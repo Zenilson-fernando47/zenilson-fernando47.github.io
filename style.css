@@ -1,0 +1,222 @@
+/* style.css
+    Tema moderno e neutro para combinar com a maioria dos sites.
+    Personalize as variáveis abaixo para adaptar ao seu visual.
+*/
+
+/* ---- Variáveis de tema ---- */
+:root{
+  --primary: #0b76ef;       /* cor principal */
+  --accent:  #ff6b6b;       /* cor de destaque */
+  --bg:      #f7fafc;       /* fundo da página */
+  --surface: #ffffff;       /* superfícies (cartões, header) */
+  --text:    #1f2937;       /* texto principal */
+  --muted:   #6b7280;       /* texto secundário */
+  --success: #16a34a;
+  --danger:  #ef4444;
+
+  --radius: 8px;
+  --shadow: 0 6px 18px rgba(31,41,55,0.08);
+  --glass:  rgba(255,255,255,0.6);
+
+  --container-max: 1100px;
+  --gutter: 1rem;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Modo escuro automático */
+@media (prefers-color-scheme: dark){
+  :root{
+     --bg: #0b1220;
+     --surface: #081226;
+     --text: #e6eef8;
+     --muted: #9aa6bf;
+     --glass: rgba(10,20,30,0.6);
+     --shadow: 0 8px 24px rgba(2,6,23,0.6);
+  }
+}
+
+/* ---- Reset e base ---- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-sans);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  font-size:16px;
+}
+
+/* Links */
+a{color:var(--primary); text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Containers e layout */
+.container{
+  max-width:var(--container-max);
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:calc(var(--gutter) * 1.25);
+  padding-right:calc(var(--gutter) * 1.25);
+}
+
+/* Grid simples */
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--gutter);
+}
+.col{
+  flex:1 1 0;
+  min-width:0;
+}
+
+/* Header / Navegação */
+.site-header{
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), transparent);
+  backdrop-filter: blur(6px);
+  padding:0.75rem 0;
+  box-shadow: var(--shadow);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  font-weight:600;
+  font-size:1.125rem;
+  color:var(--text);
+}
+.nav{
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+}
+.nav a{
+  padding:0.5rem 0.65rem;
+  color:var(--muted);
+  border-radius:6px;
+  transition:all .15s ease;
+}
+.nav a:hover{
+  color:var(--text);
+  background:rgba(15,23,42,0.04);
+}
+
+/* Hero */
+.hero{
+  padding:3.5rem 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:1rem;
+}
+.hero .title{font-size:2rem; font-weight:700; margin:0}
+.hero .subtitle{color:var(--muted); margin-top:0.5rem}
+
+/* Cards */
+.card{
+  background:var(--surface);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:1rem;
+  color:var(--text);
+}
+.card .card-title{font-weight:600; margin:0 0 0.5rem 0}
+.card .card-body{color:var(--muted)}
+
+/* Botões */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.5rem;
+  padding:0.5rem 0.9rem;
+  border-radius:8px;
+  cursor:pointer;
+  border:1px solid transparent;
+  font-weight:600;
+  transition:transform .08s ease, box-shadow .08s ease, opacity .08s ease;
+  text-decoration:none;
+  color:inherit;
+  background:transparent;
+}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:3px solid color-mix(in srgb, var(--primary) 20%, transparent); outline-offset:3px}
+
+.btn-primary{
+  background:linear-gradient(90deg,var(--primary), color-mix(in srgb,var(--primary) 80%, black 20%));
+  color:white;
+  border-color:transparent;
+  box-shadow: 0 8px 20px rgba(11,118,239,0.16);
+}
+.btn-ghost{
+  background:transparent;
+  color:var(--text);
+  border:1px solid rgba(15,23,42,0.06);
+}
+
+/* Formulários */
+.input, textarea, select{
+  width:100%;
+  padding:0.55rem 0.75rem;
+  border-radius:8px;
+  border:1px solid rgba(15,23,42,0.06);
+  background:transparent;
+  color:var(--text);
+  font:inherit;
+}
+.input:focus, textarea:focus, select:focus{
+  border-color:var(--primary);
+  box-shadow:0 6px 16px color-mix(in srgb, var(--primary) 12%, transparent);
+  outline:none;
+}
+
+/* Footer */
+.site-footer{
+  padding:2rem 0;
+  color:var(--muted);
+  font-size:0.95rem;
+}
+
+/* Utilities */
+.text-muted{color:var(--muted)}
+.small{font-size:.9rem}
+.round{border-radius:9999px}
+.badge{
+  display:inline-block;
+  padding:0.2rem 0.5rem;
+  border-radius:999px;
+  background:linear-gradient(90deg, color-mix(in srgb,var(--primary) 12%, transparent), transparent);
+  color:var(--primary);
+  font-weight:600;
+  font-size:0.85rem;
+}
+
+/* Cards grid responsive */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:1rem;
+}
+
+/* Responsividade básica */
+@media (max-width:720px){
+  .hero{padding:2rem 0}
+  .nav{display:none} /* esconder nav padrão em mobile, espere seu menu hamburger */
+}
+
+/* Pequenas melhorias de acessibilidade visual */
+img{max-width:100%;height:auto;display:block}
